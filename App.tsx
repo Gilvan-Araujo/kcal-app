@@ -1,3 +1,5 @@
+import { ActivityIndicator, StatusBar } from 'react-native';
+
 import {
   Roboto_400Regular,
   Roboto_700Bold,
@@ -6,7 +8,6 @@ import {
 } from '@expo-google-fonts/roboto';
 import { RobotoMono_700Bold } from '@expo-google-fonts/roboto-mono';
 import { ThemeProvider } from '@rneui/themed';
-import { ActivityIndicator, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { Login } from '@screens/login';
@@ -26,6 +27,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
+        <StatusBar barStyle="light-content" />
         <SafeAreaView
           style={{
             flex: 1,
