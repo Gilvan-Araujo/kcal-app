@@ -5,6 +5,7 @@
   "singleQuote": true,
   "semi": true,
   "importOrder": [
+    "^react(-native)?$",
     "<THIRD_PARTY_MODULES>",
     "@api/*",
     "@assets/*",
