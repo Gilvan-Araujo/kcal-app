@@ -4,7 +4,7 @@
     "@expo-google-fonts/roboto-mono": "^0.2.3",
     "@rneui/base": "^4.0.0-rc.8",
     "@rneui/themed": "^4.0.0-rc.8",
-    "expo": "^52.0.28",
+    "expo": "~52.0.29",
     "expo-font": "~13.0.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
