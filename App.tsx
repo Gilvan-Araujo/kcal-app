@@ -7,12 +7,17 @@ import {
   useFonts,
 } from '@expo-google-fonts/roboto';
 import { RobotoMono_700Bold } from '@expo-google-fonts/roboto-mono';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ThemeProvider } from '@rneui/themed';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Login } from '@screens/login';
+import { SignUp } from '@screens/sign-up';
 
 import { theme } from '@theme/theme';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -26,21 +31,27 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <StatusBar barStyle="light-content" />
-        <SafeAreaView
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: theme.darkColors.background,
-            paddingLeft: 16,
-            paddingRight: 16,
-          }}
-        >
-          <Login />
-        </SafeAreaView>
-      </ThemeProvider>
+      <NavigationContainer>
+        <ThemeProvider theme={theme}>
+          <StatusBar barStyle="light-content" />
+          <Stack.Navigator
+            id={undefined}
+            screenOptions={{
+              headerShown: false,
+              contentStyle: {
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: theme.darkColors.background,
+                paddingLeft: 16,
+                paddingRight: 16,
+              },
+            }}
+          >
+            <Stack.Screen name="login" component={Login} />
+          </Stack.Navigator>
+        </ThemeProvider>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
