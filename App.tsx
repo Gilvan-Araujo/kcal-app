@@ -13,7 +13,6 @@ import { ThemeProvider } from '@rneui/themed';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Login } from '@screens/login';
-import { SignUp } from '@screens/sign-up';
 
 import { theme } from '@theme/theme';
 
@@ -42,7 +41,7 @@ export default function App() {
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: theme.darkColors.background,
+                backgroundColor: theme.darkColors?.background,
                 paddingLeft: 16,
                 paddingRight: 16,
               },
