@@ -1,4 +1,6 @@
 {
+  "name": "kcal",
+  "slug": "kcal",
   "newArchEnabled": true,
   "plugins": ["expo-font"]
 }
