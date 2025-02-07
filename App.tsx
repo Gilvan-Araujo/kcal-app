@@ -12,7 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ThemeProvider } from '@rneui/themed';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { Login } from '@screens/login';
+import { Home } from '@screens/home';
 import { SignUp } from '@screens/sign-up';
 
 import { theme } from '@theme/theme';
@@ -45,9 +45,9 @@ export default function App() {
               },
               animation: 'slide_from_bottom',
             }}
-            initialRouteName="login"
+            initialRouteName="home"
           >
-            <Stack.Screen name="login" component={Login} />
+            <Stack.Screen name="home" component={Home} />
             <Stack.Screen name="signup" component={SignUp} />
           </Stack.Navigator>
         </ThemeProvider>

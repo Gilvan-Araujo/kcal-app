@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Button, Text } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const Login = () => {
+export const Home = () => {
   const navigation = useNavigation();
 
   return (
