@@ -1,10 +1,21 @@
-import { Button, Text } from '@rneui/themed';
 import { TouchableOpacity, View } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
+import { Button, Text } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const Login = () => {
+  const navigation = useNavigation();
+
   return (
-    <SafeAreaView style={{ alignItems: 'center', width: '100%', gap: 142 }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 142,
+      }}
+    >
       <View>
         <Text
           style={{
@@ -28,7 +39,7 @@ export const Login = () => {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={{ fontSize: 20 }}>Don't have an account?</Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('signup')}>
             <Text style={{ fontSize: 20, fontFamily: 'Roboto_700Bold' }}>
               Sign up
             </Text>

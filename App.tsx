@@ -13,6 +13,7 @@ import { ThemeProvider } from '@rneui/themed';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Login } from '@screens/login';
+import { SignUp } from '@screens/sign-up';
 
 import { theme } from '@theme/theme';
 
@@ -39,15 +40,15 @@ export default function App() {
               headerShown: false,
               contentStyle: {
                 flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
                 backgroundColor: theme.darkColors?.background,
-                paddingLeft: 16,
-                paddingRight: 16,
+                padding: 16,
               },
+              animation: 'slide_from_bottom',
             }}
+            initialRouteName="login"
           >
             <Stack.Screen name="login" component={Login} />
+            <Stack.Screen name="signup" component={SignUp} />
           </Stack.Navigator>
         </ThemeProvider>
       </NavigationContainer>
