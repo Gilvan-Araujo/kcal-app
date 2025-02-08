@@ -9,23 +9,23 @@ export const theme = createTheme({
     grey3: '#666666',
   },
   components: {
-    Text: {
+    Text: (props) => ({
       style: {
         fontFamily: 'Roboto_400Regular',
         color: defaultTheme.colors.white,
         fontWeight: 'regular',
+        ...(props.subHeader && {
+          fontSize: 32,
+          color: defaultTheme.colors.white,
+          fontFamily: 'Roboto_400Regular',
+          fontWeight: 'regular',
+        }),
+        ...(props.smallText && {
+          fontFamily: 'Roboto_400Regular',
+          fontSize: 16,
+        }),
       },
-      h1Style: {
-        fontSize: 32,
-        color: defaultTheme.colors.white,
-        fontFamily: 'Roboto_400Regular',
-        fontWeight: 'regular',
-      },
-      smallTextStyle: {
-        fontFamily: 'Roboto_400Regular',
-        fontSize: 16,
-      },
-    },
+    }),
     Button: {
       titleStyle: { fontFamily: 'Roboto_900Black', fontSize: 20 },
     },
@@ -39,6 +39,7 @@ export const theme = createTheme({
         paddingLeft: 8,
         paddingRight: 8,
         borderRadius: 10,
+        borderColor: '#A9ABAF',
       },
     },
   },
