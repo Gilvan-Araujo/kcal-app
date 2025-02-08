@@ -51,7 +51,7 @@ export const SignUp = () => {
           }
           type="clear"
           size="sm"
-          onPress={() => navigation.navigate('login')}
+          onPress={() => navigation.navigate('home')}
         />
 
         <Text h1>Sign up</Text>
