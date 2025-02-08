@@ -52,7 +52,7 @@ export const SignUp = () => {
           onPress={() => navigation.navigate('home')}
         />
 
-        <Text h1>Sign up</Text>
+        <Text subHeader>Sign up</Text>
       </View>
 
       <View style={{ flexDirection: 'column', gap: 32 }}>
@@ -61,7 +61,6 @@ export const SignUp = () => {
           onChangeText={onChangeEmail}
           keyboardType="email-address"
           placeholder="Email"
-          inputContainerStyle={{ borderColor: theme.colors.disabled }}
         />
 
         <Input
@@ -79,7 +78,6 @@ export const SignUp = () => {
           }
           placeholder="Password"
           secureTextEntry={passwordVisible}
-          inputContainerStyle={{ borderColor: theme.colors.disabled }}
         />
 
         <Input
@@ -97,7 +95,6 @@ export const SignUp = () => {
           }
           placeholder="Confirm password"
           secureTextEntry={confirmPasswordVisible}
-          inputContainerStyle={{ borderColor: theme.colors.disabled }}
         />
 
         <Button
