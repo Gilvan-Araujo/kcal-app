@@ -30,9 +30,10 @@ export const Home = () => {
 
       <View style={{ gap: 10, width: '100%' }}>
         <Button
+          title="Log in"
+          onPress={() => navigation.navigate('login')}
           containerStyle={{ width: '100%' }}
           buttonStyle={{ paddingTop: 14, paddingBottom: 14, borderRadius: 10 }}
-          title="Log in"
           titleStyle={{ fontFamily: 'Roboto_900Black', fontSize: 20 }}
         />
 

@@ -13,6 +13,7 @@ import { ThemeProvider } from '@rneui/themed';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Home } from '@screens/home';
+import { Login } from '@screens/login';
 import { SignUp } from '@screens/sign-up';
 
 import { theme } from '@theme/theme';
@@ -48,6 +49,7 @@ export default function App() {
             initialRouteName="home"
           >
             <Stack.Screen name="home" component={Home} />
+            <Stack.Screen name="login" component={Login} />
             <Stack.Screen name="signup" component={SignUp} />
           </Stack.Navigator>
         </ThemeProvider>
