@@ -119,7 +119,7 @@ export const SignUp = () => {
         >
           <Text style={{ fontSize: 20 }}>Already have an account</Text>
           <Link
-            screen="home"
+            screen="login"
             style={{ fontSize: 20, fontFamily: 'Roboto_700Bold' }}
           >
             Log in
