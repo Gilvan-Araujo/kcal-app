@@ -12,9 +12,7 @@ import {
 } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import AppleLogo from '@assets/apple-logo.svg';
-import FacebookLogo from '@assets/facebook-logo.svg';
-import GoogleLogo from '@assets/google-logo.svg';
+import { SocialLoginOrSignUp } from '@components/social-login-or-sign-up';
 
 export const SignUp = () => {
   const { theme } = useTheme();
@@ -113,21 +111,7 @@ export const SignUp = () => {
       </View>
 
       <View style={{ alignItems: 'center', marginTop: 70, gap: 70 }}>
-        <View style={{ alignItems: 'center', gap: 20 }}>
-          <Text smallText>Or</Text>
-          <Text smallText>Sign up with</Text>
-          <View style={{ flexDirection: 'row', gap: 24 }}>
-            <TouchableOpacity>
-              <AppleLogo width={40} height={40} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <GoogleLogo width={40} height={40} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <FacebookLogo width={40} height={40} />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <SocialLoginOrSignUp variant="sign-up" />
 
         <View
           style={{
