@@ -1,15 +1,8 @@
 import { useState } from 'react';
-import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 
 import { Link, useNavigation } from '@react-navigation/native';
-import {
-  Button,
-  ButtonGroup,
-  Icon,
-  Input,
-  Text,
-  useTheme,
-} from '@rneui/themed';
+import { Button, Icon, Input, Text, useTheme } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { SocialLoginOrSignUp } from '@components/social-login-or-sign-up';
@@ -97,14 +90,7 @@ export const SignUp = () => {
           secureTextEntry={confirmPasswordVisible}
         />
 
-        <Button
-          title={'Sign up'}
-          buttonStyle={{
-            paddingTop: 14,
-            paddingBottom: 14,
-            borderRadius: 10,
-          }}
-        />
+        <Button title={'Sign up'} textButton />
       </View>
 
       <View style={{ alignItems: 'center', marginTop: 70, gap: 70 }}>

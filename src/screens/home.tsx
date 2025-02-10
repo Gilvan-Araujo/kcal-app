@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Button, Text } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { Logo } from '@components/logo';
+
 export const Home = () => {
   const navigation = useNavigation();
 
@@ -16,25 +18,14 @@ export const Home = () => {
         gap: 142,
       }}
     >
-      <View>
-        <Text
-          style={{
-            fontSize: 64,
-            fontFamily: 'RobotoMono_700Bold',
-            textAlign: 'center',
-          }}
-        >
-          kCal
-        </Text>
-      </View>
+      <Logo />
 
       <View style={{ gap: 10, width: '100%' }}>
         <Button
           title="Log in"
           onPress={() => navigation.navigate('login')}
           containerStyle={{ width: '100%' }}
-          buttonStyle={{ paddingTop: 14, paddingBottom: 14, borderRadius: 10 }}
-          titleStyle={{ fontFamily: 'Roboto_900Black', fontSize: 20 }}
+          textButton
         />
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>

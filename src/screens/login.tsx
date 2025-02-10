@@ -72,11 +72,8 @@ export const Login = () => {
 
         <Button
           title="Log in"
-          buttonStyle={{
-            paddingTop: 14,
-            paddingBottom: 14,
-            borderRadius: 10,
-          }}
+          textButton
+          onPress={() => navigation.navigate('welcome')}
         />
       </View>
 
