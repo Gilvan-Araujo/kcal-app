@@ -2,6 +2,7 @@ import { defaultTheme } from '@rneui/base';
 import { createTheme } from '@rneui/themed';
 
 export const theme = createTheme({
+  // ...defaultTheme,
   mode: 'dark',
   darkColors: {
     primary: '#0080ff',
@@ -9,26 +10,39 @@ export const theme = createTheme({
     grey3: '#666666',
   },
   components: {
-    Text: (props) => ({
+    Text: (props, theme) => ({
       style: {
         fontFamily: 'Roboto_400Regular',
-        color: defaultTheme.colors.white,
+        color: theme.colors.black,
         fontWeight: 'regular',
         ...(props.subHeader && {
           fontSize: 32,
-          color: defaultTheme.colors.white,
           fontFamily: 'Roboto_400Regular',
+          color: theme.colors.black,
           fontWeight: 'regular',
         }),
         ...(props.smallText && {
-          fontFamily: 'Roboto_400Regular',
           fontSize: 16,
+          fontFamily: 'Roboto_400Regular',
+        }),
+        ...(props.appName && {
+          fontSize: 64,
+          fontFamily: 'RobotoMono_700Bold',
+          textAlign: 'center',
+          letterSpacing: -8,
         }),
       },
     }),
-    Button: {
+    Button: (props) => ({
       titleStyle: { fontFamily: 'Roboto_900Black', fontSize: 20 },
-    },
+      buttonStyle: {
+        borderRadius: 10,
+        ...(props.textButton && {
+          paddingTop: 14,
+          paddingBottom: 14,
+        }),
+      },
+    }),
     Input: {
       placeholderTextColor: '#A9ABAF',
       containerStyle: { paddingLeft: 0, paddingRight: 0 },
