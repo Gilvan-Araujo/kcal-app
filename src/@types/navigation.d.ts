@@ -4,6 +4,7 @@ declare global {
       home: undefined;
       login: undefined;
       signup: undefined;
+      welcome: undefined;
     }
   }
 }
