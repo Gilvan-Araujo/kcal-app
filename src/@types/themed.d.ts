@@ -5,6 +5,7 @@ declare module '@rneui/themed' {
     smallText?: boolean;
     subHeader?: boolean;
     appName?: boolean;
+    errorText?: boolean;
   }
 
   export interface ButtonProps {

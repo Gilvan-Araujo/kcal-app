@@ -1,8 +1,6 @@
-import { defaultTheme } from '@rneui/base';
 import { createTheme } from '@rneui/themed';
 
 export const theme = createTheme({
-  // ...defaultTheme,
   mode: 'dark',
   darkColors: {
     primary: '#0080ff',
@@ -31,6 +29,12 @@ export const theme = createTheme({
           textAlign: 'center',
           letterSpacing: -8,
         }),
+        ...(props.errorText && {
+          fontSize: 12,
+          marginTop: -16,
+          marginLeft: 12,
+          color: theme.colors.error,
+        }),
       },
     }),
     Button: (props) => ({
@@ -42,6 +46,8 @@ export const theme = createTheme({
           paddingBottom: 14,
         }),
       },
+      // custom padding to make the loading button height same as text button
+      loadingStyle: { paddingTop: 2.4, paddingBottom: 2.4 },
     }),
     Input: {
       placeholderTextColor: '#A9ABAF',
