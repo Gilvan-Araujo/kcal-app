@@ -1,11 +1,36 @@
 import { useState } from 'react';
 import { View } from 'react-native';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useNavigation } from '@react-navigation/native';
 import { Button, Icon, Input, Text, useTheme } from '@rneui/themed';
+import { Controller, useForm } from 'react-hook-form';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { z } from 'zod';
 
 import { SocialLoginOrSignUp } from '@components/social-login-or-sign-up';
+
+const schema = z
+  .object({
+    email: z
+      .string()
+      .nonempty({ message: 'Email required' })
+      .email({ message: 'Invalid email address' }),
+    password: z
+      .string()
+      .nonempty({ message: 'Password required' })
+      .min(8, { message: 'Password must be have at least 8 characters' }),
+    confirmPassword: z
+      .string()
+      .nonempty({ message: 'Confirm password required' })
+      .min(8, { message: 'Password must be have at least 8 characters' }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ['confirmPassword'],
+    message: 'Passwords do not match',
+  });
+
+type FormData = z.infer<typeof schema>;
 
 export const SignUp = () => {
   const { theme } = useTheme();
@@ -14,9 +39,19 @@ export const SignUp = () => {
   const [passwordVisible, setPasswordVisible] = useState(true);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(true);
 
-  const [email, onChangeEmail] = useState('');
-  const [password, onChangePassword] = useState('');
-  const [confirmPassword, onChangeConfirmPassword] = useState('');
+  const {
+    control,
+    handleSubmit,
+
+    formState: { errors, isValid },
+  } = useForm<FormData>({
+    defaultValues: { email: '', password: '', confirmPassword: '' },
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = () => {
+    isValid && navigation.navigate('welcome');
+  };
 
   return (
     <SafeAreaView
@@ -49,48 +84,86 @@ export const SignUp = () => {
       </View>
 
       <View style={{ flexDirection: 'column', gap: 32 }}>
-        <Input
-          value={email}
-          onChangeText={onChangeEmail}
-          keyboardType="email-address"
-          placeholder="Email"
-        />
+        <View>
+          <Controller
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                keyboardType="email-address"
+                placeholder="Email"
+              />
+            )}
+            name="email"
+          />
 
-        <Input
-          value={password}
-          onChangeText={onChangePassword}
-          rightIcon={
-            <Icon
-              onPress={() => {
-                setPasswordVisible((prevState) => !prevState);
-              }}
-              type="material-community"
-              name={passwordVisible ? 'eye' : 'eye-off'}
-              size={20}
-            />
-          }
-          placeholder="Password"
-          secureTextEntry={passwordVisible}
-        />
+          {errors.email && <Text errorText>{errors.email.message}</Text>}
+        </View>
 
-        <Input
-          value={confirmPassword}
-          onChangeText={onChangeConfirmPassword}
-          rightIcon={
-            <Icon
-              onPress={() => {
-                setConfirmPasswordVisible((prevState) => !prevState);
-              }}
-              type="material-community"
-              name={confirmPasswordVisible ? 'eye' : 'eye-off'}
-              size={20}
-            />
-          }
-          placeholder="Confirm password"
-          secureTextEntry={confirmPasswordVisible}
-        />
+        <View>
+          <Controller
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                rightIcon={
+                  <Icon
+                    onPress={() => {
+                      setPasswordVisible((prevState) => !prevState);
+                    }}
+                    type="material-community"
+                    name={passwordVisible ? 'eye' : 'eye-off'}
+                    size={20}
+                  />
+                }
+                placeholder="Password"
+                secureTextEntry={passwordVisible}
+              />
+            )}
+            name="password"
+          />
 
-        <Button title={'Sign up'} textButton />
+          {errors.password && <Text errorText>{errors.password.message}</Text>}
+        </View>
+
+        <View>
+          <Controller
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                rightIcon={
+                  <Icon
+                    onPress={() => {
+                      setConfirmPasswordVisible((prevState) => !prevState);
+                    }}
+                    type="material-community"
+                    name={confirmPasswordVisible ? 'eye' : 'eye-off'}
+                    size={20}
+                  />
+                }
+                placeholder="Confirm password"
+                secureTextEntry={confirmPasswordVisible}
+              />
+            )}
+            name="confirmPassword"
+          />
+
+          {errors.confirmPassword && (
+            <Text errorText>{errors.confirmPassword.message}</Text>
+          )}
+        </View>
+
+        <Button title={'Sign up'} textButton onPress={handleSubmit(onSubmit)} />
       </View>
 
       <View style={{ alignItems: 'center', marginTop: 70, gap: 70 }}>
