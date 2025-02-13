@@ -1,13 +1,14 @@
-import { useState } from 'react';
 import { View } from 'react-native';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigation } from '@react-navigation/native';
-import { Button, Icon, Input, Text, useTheme } from '@rneui/themed';
-import { Controller, useForm } from 'react-hook-form';
+import { Button, Icon, Text, useTheme } from '@rneui/themed';
+import { useForm } from 'react-hook-form';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { z } from 'zod';
 
+import { RHFInput } from '@components/rhf/rhf--input';
+import { RHFPasswordInput } from '@components/rhf/rhf-password-input';
 import { SocialLoginOrSignUp } from '@components/social-login-or-sign-up';
 
 type FormData = {
@@ -30,20 +31,17 @@ export const Login = () => {
   const { theme } = useTheme();
   const navigation = useNavigation();
 
-  const [passwordVisible, setPasswordVisible] = useState(true);
-
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid, errors },
   } = useForm<FormData>({
     defaultValues: { email: '', password: '' },
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = () => {
     isValid && navigation.navigate('welcome');
-    console.log(data);
   };
 
   return (
@@ -76,53 +74,19 @@ export const Login = () => {
       </View>
 
       <View style={{ flexDirection: 'column', gap: 32 }}>
-        <View>
-          <Controller
-            control={control}
-            rules={{ required: true }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                keyboardType="email-address"
-                placeholder="Email"
-              />
-            )}
-            name="email"
-          />
+        <RHFInput
+          control={control}
+          name="email"
+          placeholder="Email"
+          errorMessage={errors.email?.message}
+        />
 
-          {errors.email && <Text errorText>{errors.email.message}</Text>}
-        </View>
-
-        <View>
-          <Controller
-            control={control}
-            rules={{ required: true }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                rightIcon={
-                  <Icon
-                    onPress={() => {
-                      setPasswordVisible((prevState) => !prevState);
-                    }}
-                    type="material-community"
-                    name={passwordVisible ? 'eye' : 'eye-off'}
-                    size={20}
-                  />
-                }
-                placeholder="Password"
-                secureTextEntry={passwordVisible}
-              />
-            )}
-            name="password"
-          />
-
-          {errors.password && <Text errorText>{errors.password.message}</Text>}
-        </View>
+        <RHFPasswordInput
+          control={control}
+          name="password"
+          placeholder="Password"
+          errorMessage={errors.password?.message}
+        />
 
         <Button title="Log in" textButton onPress={handleSubmit(onSubmit)} />
       </View>
