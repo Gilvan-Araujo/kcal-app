@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { z } from 'zod';
 
+import { Header } from '@components/header';
 import { RHFInput } from '@components/rhf/rhf--input';
 import { RHFPasswordInput } from '@components/rhf/rhf-password-input';
 import { SocialLoginOrSignUp } from '@components/social-login-or-sign-up';
@@ -60,25 +61,7 @@ export const SignUp = () => {
         width: '100%',
       }}
     >
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 8,
-          marginBottom: 68,
-        }}
-      >
-        <Button
-          icon={
-            <Icon name="chevron-left" color={theme.colors.grey3} size={40} />
-          }
-          type="clear"
-          size="sm"
-          onPress={() => navigation.navigate('home')}
-        />
-
-        <Text subHeader>Sign up</Text>
-      </View>
+      <Header title="Sign up" />
 
       <View style={{ flexDirection: 'column', gap: 32 }}>
         <RHFInput
