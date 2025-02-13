@@ -2,11 +2,12 @@ import { View } from 'react-native';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigation } from '@react-navigation/native';
-import { Button, Icon, Text, useTheme } from '@rneui/themed';
+import { Button, useTheme } from '@rneui/themed';
 import { useForm } from 'react-hook-form';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { z } from 'zod';
 
+import { Header } from '@components/header';
 import { RHFInput } from '@components/rhf/rhf--input';
 import { RHFPasswordInput } from '@components/rhf/rhf-password-input';
 import { SocialLoginOrSignUp } from '@components/social-login-or-sign-up';
@@ -28,7 +29,6 @@ const schema = z.object({
 });
 
 export const Login = () => {
-  const { theme } = useTheme();
   const navigation = useNavigation();
 
   const {
@@ -54,24 +54,7 @@ export const Login = () => {
         width: '100%',
       }}
     >
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 8,
-        }}
-      >
-        <Button
-          icon={
-            <Icon name="chevron-left" color={theme.colors.grey3} size={40} />
-          }
-          type="clear"
-          size="sm"
-          onPress={() => navigation.navigate('home')}
-        />
-
-        <Text subHeader>Log in</Text>
-      </View>
+      <Header title="Log in" />
 
       <View style={{ flexDirection: 'column', gap: 32 }}>
         <RHFInput
