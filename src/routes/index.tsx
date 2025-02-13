@@ -1,3 +1,5 @@
+import { View } from 'react-native';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from '@rneui/themed';
 
@@ -12,7 +14,7 @@ export const Routes = () => {
   const { theme } = useTheme();
 
   return (
-    <>
+    <View style={{ flex: 1, backgroundColor: theme.colors?.background }}>
       <Stack.Navigator
         id={undefined}
         screenOptions={(props) => ({
@@ -32,6 +34,6 @@ export const Routes = () => {
         <Stack.Screen name="signup" component={SignUp} />
         <Stack.Screen name="welcome" component={Welcome} />
       </Stack.Navigator>
-    </>
+    </View>
   );
 };
